@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dotta 2 Kompendyum Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #00ff99;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .countdown {
+      font-size: 3rem;
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 30px;
+    }
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .label {
+      font-size: 1rem;
+      color: #888;
+      margin-top: 5px;
+    }
+    .like-button {
+      background: linear-gradient(135deg, #ff00cc, #ffcc00);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      color: white;
+      border-radius: 50px;
+      box-shadow: 0 0 20px #ffcc00;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: transform 0.1s ease-in-out;
+    }
+    .like-button:active {
+      transform: scale(0.95);
+    }
+    .like-count {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+    .wallet-section {
+      max-width: 90%;
+      background-color: #111;
+      border: 1px dashed #555;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+    .disclaimer {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dotta 2 Kompendyum Release Countdown</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <button class="like-button" onclick="increaseLikes()">💖 Smash if Hype is Real</button>
+  <div class="like-count">Likes: <span id="likeCount">0</span></div>
+
+  <div class="wallet-section">
+    I'm not saying I'm desperate for stablecoins but here's a wild idea:<br><br>
+    <strong>USDT Wallet (BEP20 BSC):</strong><br>
+    <code>0x54F57B5824788B3e89D28E445Bc206E651536786</code><br><br>
+    Totally not begging. I really don't care. 😎
+  </div>
+
+  <div class="disclaimer">
+    This is just a fun concept and not official data. <br>
+    It's speculative and there is zero financial interest in anyone making any contributions.
+  </div>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("August 15, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `
+        <div class="unit"><div>${days}</div><div class="label">Days</div></div>
+        <div class="unit"><div>${hours}</div><div class="label">Hours</div></div>
+        <div class="unit"><div>${minutes}</div><div class="label">Minutes</div></div>
+        <div class="unit"><div>${seconds}</div><div class="label">Seconds</div></div>
+      `;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    let likeCount = 0;
+    function increaseLikes() {
+      likeCount++;
+      document.getElementById("likeCount").textContent = likeCount;
+    }
+  </script>
+</body>
+</html>
